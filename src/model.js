@@ -53,7 +53,7 @@ guard({
 guard({
   source: enterFieldSize,
   filter: (size) => {
-    return !/[0-9]/g.test(+size);
+    return !/[0-9]/g.test(+size) || +size < 1;
   },
   target: incorrectInput
 });
