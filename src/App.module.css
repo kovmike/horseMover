@@ -1,6 +1,10 @@
 .app {
+  display: flex;
   font-family: sans-serif;
   text-align: center;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .field {
