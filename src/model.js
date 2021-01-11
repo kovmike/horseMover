@@ -12,7 +12,6 @@ const fieldGen = (s) =>
 
 const turn = createEvent();
 const firstTurn = createEvent();
-const setPossibleMoves = createEvent();
 const enterCorrectSize = createEvent();
 const enterFieldSize = createEvent();
 const reset = createEvent();
@@ -24,9 +23,7 @@ const lose = createEvent();
 
 const $fieldSize = createStore(0).on(enterCorrectSize, (_, size) => size);
 const $emptyField = createStore([]).on(genEmptyField, (_, payload) => payload);
-const $possibleMoves = createStore([])
-  .on(setPossibleMoves, (_, moves) => moves)
-  .reset([reset, $fieldSize]);
+const $possibleMoves = createStore([]).reset([reset, $fieldSize]);
 
 const $horseHistory = createStore([])
   .on(turn, (history, nextTurn) => [...history, nextTurn])
@@ -104,7 +101,7 @@ sample({
 
     return possibleMoves;
   },
-  target: setPossibleMoves
+  target: $possibleMoves
 });
 
 //заполнение поля

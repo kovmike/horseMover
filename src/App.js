@@ -48,6 +48,7 @@ const App = () => {
   return (
     <div className={cl.app}>
       <h1>Лошадью ходи</h1>
+      <h5>Заполни шахматное поле, совершая ходы конем</h5>
       {winFlag && !incorrect && <h1>Ты выиграл</h1>}
       {loseFlag && !firstTurn && <h1>Ты проиграл</h1>}
       {winFlag && loseFlag && !firstTurn && <h1>ЧИТОР</h1>}
