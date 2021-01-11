@@ -1,11 +1,31 @@
 import React from "react";
 import { useStore } from "effector-react";
-import { FEILDSIZE, turn, reset, $fullField, $firstTurn } from "./model";
+import {
+  turn,
+  reset,
+  $fullField,
+  $firstTurn,
+  enterFieldSize,
+  $fieldSize,
+  $incorrect,
+  $crazyPlayer,
+  $youWin,
+  $youLose
+} from "./model";
 import cl from "./App.module.css";
 
 const App = () => {
   const fullField = useStore($fullField);
   const firstTurn = useStore($firstTurn);
+  const fieldSize = useStore($fieldSize);
+  const incorrect = useStore($incorrect);
+  const crazyPlayer = useStore($crazyPlayer);
+  const winFlag = useStore($youWin);
+  const loseFlag = useStore($youLose);
+
+  const typeSize = (e) => {
+    enterFieldSize(e.target.value);
+  };
 
   const draw = (pattern) => {
     return pattern.map((line, indexColumn) => {
@@ -27,11 +47,21 @@ const App = () => {
 
   return (
     <div className={cl.app}>
-      <h1>Hello Старый</h1>
+      <h1>Лошадью ходи</h1>
+      {winFlag && <h1>Ты выиграл</h1>}
+      {loseFlag && !firstTurn && <h1>Ты проиграл</h1>}
+      {winFlag && loseFlag && !firstTurn && <h1>ЧИТОР</h1>}
+      <input
+        placeholder={"Введите размерность поля"}
+        onChange={(e) => typeSize(e)}
+      />
+      <br />
+      <span>{incorrect ? "неравильный ввод" : crazyPlayer ? "crazy" : ""}</span>
+      <br />
       <button onClick={reset}>Начать заново</button>
       <div
         className={cl.field}
-        style={{ height: `${40 * FEILDSIZE}px`, width: `${40 * FEILDSIZE}px` }}
+        style={{ height: `${40 * fieldSize}px`, width: `${40 * fieldSize}px` }}
       >
         {draw(fullField)}
       </div>
