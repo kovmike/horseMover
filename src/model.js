@@ -2,15 +2,6 @@ import { createStore, createEvent, combine, sample, forward } from "effector";
 
 const FEILDSIZE = 8;
 
-// const FIELD = new Array(FEILDSIZE).fill(" ").map((_, indexLine) =>
-//   new Array(FEILDSIZE).fill(0).map((item, indexItem) => {
-//     if (indexLine % 2 === 0) {
-//       return indexItem % 2 === 0 ? item : 1;
-//     } else {
-//       return indexItem % 2 === 0 ? 1 : item;
-//     }
-//   })
-// );
 const FIELD = new Array(FEILDSIZE)
   .fill(" ")
   .map((_, indexLine) => new Array(FEILDSIZE).fill(0));
